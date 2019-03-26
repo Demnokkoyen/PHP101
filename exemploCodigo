@@ -1,0 +1,38 @@
+<?php
+echo "Digite a quantidade de aulas\n";
+fscanf(STDIN, "%d\n", $aulas);
+
+echo "Digite a nota da P1\n";
+fscanf(STDIN, "%f\n", $p1);
+echo "Digite a nota Ma1\n";
+fscanf(STDIN, "%f\n", $m1a);
+echo "Digite a nota Mb1\n";
+fscanf(STDIN, "%f\n", $m1b);
+
+echo "Digite a nota da P2\n";
+fscanf(STDIN, "%f\n", $p2);
+echo "Digite a nota Ma2\n";
+fscanf(STDIN, "%f\n", $m2a);
+echo "Digite a nota Mb2\n";
+fscanf(STDIN, "%f\n", $m2b);
+
+echo "Digite a quantidade de faltas no semestre\n";
+fscanf(STDIN, "%d\n", $faltas);
+
+$a1 = 0.7*$p1 + 0.2*$m1a + 0.1*$m1b;
+$a2 = 0.7*$p2 + 0.2*$m2a + 0.1*$m2b;
+$presenca = 100-($faltas/$aulas)*100;
+$media = ($a1+($a2*2))/3;
+
+if($media > 5 && $presenca >= 75) {
+	echo sprintf("Média final: %d\n Aprovado!\n", $media);
+}
+elseif($media < 5 && $media >= 3 && $presenca >= 75) {
+	echo sprintf("Média final: %d\n Recuperacao!\n", $media);
+}
+elseif($media < 3 && $presenca >= 75) {
+	echo sprintf("Média final: %d\n Reprovado por nota!\n", $media);
+}
+elseif($presenca < 75) {
+	echo sprintf("%d\n Reprovado por falta!\n", $media);
+}
